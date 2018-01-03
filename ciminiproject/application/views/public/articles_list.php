@@ -11,24 +11,26 @@
 		</thead>
 		<tbody>
 		<?php 
-			if($articles):
-			$count = $this->uri->segment(3);
-			 	foreach($articles as $article): 
+		if($articles):
+		$count = $this->uri->segment(3);
+			foreach($articles as $article): 
 		?>
-				<tr>
-					<td><?= ++$count ?></td>
-					<td><?= $article->title ?></td>
-					<td>Publish Date</td>
-				</tr>
+			<tr>
+				<td><?= ++$count ?></td>
+				<td>
+				<?= anchor("user/article_details/{$article->id}",$article->title) ?>
+				</td>
+				<td><?= date('d M y H:i:s', strtotime($article->created_dt))?></td>
+			</tr>
 		<?php
-				endforeach;
-			else:
+			endforeach;
+		else:
 		?>
-				<tr>
-					<td colspan="3">No record added</td>
-				</tr>
+			<tr>
+				<td colspan="3">No record added</td>
+			</tr>
 		<?php 
-			endif;
+		endif;
 		?>
 		</tbody>
 	</table>
