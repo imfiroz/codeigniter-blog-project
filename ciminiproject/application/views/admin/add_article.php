@@ -1,7 +1,8 @@
 <?php include('admin_header.php'); ?>
 <div class="container">
-	<?= form_open('admin/save_article', 'class="form-horizontal"'); ?> 
+	<?= form_open_multipart('admin/save_article', 'class="form-horizontal"'); ?> 
 	  <?= form_hidden('user_id', $this->session->userdata('user_id'))?>
+	  <?= form_hidden('created_dt', date('Y-m-d H:i:s'))?>
 		  <fieldset>
 			<legend>Add Article</legend>
 			<div class="row">
@@ -15,6 +16,20 @@
 				</div>
 				<div class="col-lg-6">
 					<?= form_error('title','<p class="text-danger">','</p>') ?>
+				</div>
+			</div>
+			
+			<div class="row">
+				<div class="col-lg-6">
+					<div class="form-group">
+						<label for="inputEmail" class="col-lg-2 control-label">Image Upload :</label> 
+						<div class="col-lg-10">
+						<?= form_upload( ['name'=>'image', 'class'=>'form-control'])?>
+						</div>
+					</div>
+				</div>
+				<div class="col-lg-6">
+					<?php if(isset($upload_error)) echo $upload_error;?>
 				</div>
 			</div>
 			<div class="row">
